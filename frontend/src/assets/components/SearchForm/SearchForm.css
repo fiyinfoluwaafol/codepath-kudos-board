@@ -1,0 +1,10 @@
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar {
+    margin-left: 40%;
+    margin-right: 40%;
+}

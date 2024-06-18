@@ -1,0 +1,10 @@
+.board-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.board-cover {
+    width: 200px;
+    height: 300px;
+}
