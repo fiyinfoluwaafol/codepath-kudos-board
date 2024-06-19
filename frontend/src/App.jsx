@@ -1,9 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import './App.css'
 import SearchForm from './assets/components/SearchForm/SearchForm'
 import BoardList from './assets/components/BoardList/BoardList'
 
 function App() {
+  const [boards, setBoards] = useState([])
+
+  useEffect(() => {
+    getBoards();
+  }, []);
+
+  async function getBoards() {
+    try{
+      const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+      const response = await fetch(`${backendUrlAccess}/boards`);
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const data = await response.json();
+      console.log(data);
+      setBoards(data);
+    }
+    catch(error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -14,7 +35,7 @@ function App() {
         <h1>KUDOBOARD</h1>
       </header>
       <SearchForm />
-      <BoardList />
+      <BoardList boards={boards}/>
     </>
   )
 }

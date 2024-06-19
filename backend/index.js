@@ -9,12 +9,13 @@ app.use(express.json())
 app.use(cors());
 
 
-
+// GET requests for /boards -> All boards
 app.get('/boards', async (req, res) => {
     const boards = await prisma.board.findMany()
     res.status(200).json(boards)
 });
 
+// GET requests for /boards/:id -> Specific board
 app.get('/boards/:id', async (req, res) => {
     const {id} = req.params
     console.log(id);
@@ -24,6 +25,7 @@ app.get('/boards/:id', async (req, res) => {
     res.status(200).json(board)
 });
 
+// POST requests for /boards -> Create a new board
 app.post('/boards', async (req, res) => {
     const {title, category, author} = req.body;
     const newBoard = await prisma.board.create({
@@ -50,6 +52,7 @@ app.put('/boards/:id', async (req, res) => {
     res.status(200).json(updatedBoard);
 });
 
+// DELETE requests for /boards/:id -> Delete a particular board
 app.delete('/boards/:id', async (req, res) => {
     const {id} = req.params;
     const deletedBoard = await prisma.board.delete({
