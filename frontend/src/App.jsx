@@ -1,10 +1,12 @@
 import { useState, useEffect} from 'react'
 import './App.css'
-import SearchForm from './assets/components/SearchForm/SearchForm'
-import BoardList from './assets/components/BoardList/BoardList'
+import SearchForm from './components/SearchForm/SearchForm'
+import BoardList from './components/BoardList/BoardList'
+import NewBoardForm from './components/NewBoardForm/NewBoardForm'
 
 function App() {
-  const [boards, setBoards] = useState([])
+  const [boards, setBoards] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     getBoards();
@@ -18,13 +20,20 @@ function App() {
         throw new Error('Something went wrong!');
       }
       const data = await response.json();
-      console.log(data);
       setBoards(data);
     }
     catch(error) {
       console.error(error);
     }
   };
+
+  function handleOpenModal (){
+    setIsModalVisible(true);
+  }
+
+  function handleCloseModal () {
+    setIsModalVisible(false);
+  }
 
   return (
     <>
@@ -34,8 +43,15 @@ function App() {
         </div>
         <h1>KUDOBOARD</h1>
       </header>
-      <SearchForm />
-      <BoardList boards={boards}/>
+      <main>
+        <SearchForm />
+        <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
+        <BoardList boards={boards}/>
+      </main>
+      <footer>
+        Fiyinfoluwa Afolayan 2024
+      </footer>
+      {isModalVisible && <NewBoardForm isOpen={isModalVisible} closeModal={handleCloseModal}/>}
     </>
   )
 }
