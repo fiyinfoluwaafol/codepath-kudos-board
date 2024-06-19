@@ -8,6 +8,12 @@ function App() {
   const [boards, setBoards] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const [boardData, setBoardData] = useState({
+    title: '',
+    category: '',
+    author: null
+  });
+
   useEffect(() => {
     getBoards();
   }, []);
@@ -27,14 +33,49 @@ function App() {
     }
   };
 
+  async function addBoard(boardData) {
+    try{
+      const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+      const options = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          title: boardData.title,
+          category: boardData.category,
+          author: boardData.author
+          })
+        };
+      const response = await fetch(`${backendUrlAccess}/boards`,options);
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const data = await response.json();
+      getBoards();
+    }
+    catch(error) {
+      console.error(error);
+    }
+  };
+
   function handleOpenModal (){
     setIsModalVisible(true);
   }
 
   function handleCloseModal () {
     setIsModalVisible(false);
+    console.log(boardData);
   }
 
+  const handleBoardDataChange = (data) => {
+    setBoardData(prev => ({ ...prev, ...data }));
+  };
+
+  const handleCreateBoard = () => {
+    addBoard(boardData);
+    handleCloseModal();
+  }
   return (
     <>
       <header id='app-header'>
@@ -51,7 +92,12 @@ function App() {
       <footer>
         Fiyinfoluwa Afolayan 2024
       </footer>
-      {isModalVisible && <NewBoardForm isOpen={isModalVisible} closeModal={handleCloseModal}/>}
+      {isModalVisible && <NewBoardForm
+        isOpen={isModalVisible}
+        closeModal={handleCloseModal}
+        onBoardDataChange={handleBoardDataChange}
+        boardData={boardData}
+        submitForm={handleCreateBoard}/>}
     </>
   )
 }
