@@ -14,7 +14,6 @@ function BoardList({boards}) {
 
   return (
     <div className='board-container'>
-        <button className="board-list-button">Create a New Board</button>
         <div className="board-list">
             {boardLst}
         </div>
