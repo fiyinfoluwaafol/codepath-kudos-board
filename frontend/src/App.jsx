@@ -59,6 +59,27 @@ function App() {
     }
   };
 
+  async function deleteBoard(boardId) {
+    try{
+      const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'},
+        };
+      const response = await fetch(`${backendUrlAccess}/boards/${boardId}`,options);
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const data = await response.json();
+      getBoards();
+    }
+    catch(error) {
+      console.error(error);
+    }
+  }
+
   function handleOpenModal (){
     setIsModalVisible(true);
   }
@@ -76,6 +97,11 @@ function App() {
     addBoard(boardData);
     handleCloseModal();
   }
+
+  const handleDeleteBoard = (boardId) => {
+    deleteBoard(boardId);
+  }
+
   return (
     <>
       <header id='app-header'>
@@ -87,7 +113,10 @@ function App() {
       <main>
         <SearchForm />
         <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
-        <BoardList boards={boards}/>
+        <BoardList
+          boards={boards}
+          onBoardDelete={handleDeleteBoard}
+        />
       </main>
       <footer>
         Fiyinfoluwa Afolayan 2024

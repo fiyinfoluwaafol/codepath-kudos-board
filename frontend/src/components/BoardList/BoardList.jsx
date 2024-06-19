@@ -1,6 +1,6 @@
 import './BoardList.css';
 import BoardCard from '../BoardCard/BoardCard';
-function BoardList({boards}) {
+function BoardList({boards,onBoardDelete}) {
 
   const boardLst = boards.map((board) => {
     return (
@@ -8,6 +8,7 @@ function BoardList({boards}) {
         key={board.id}
         title={board.title}
         category={board.category}
+        onBoardDelete={() => onBoardDelete(board.id)}
       />
     );
   });
