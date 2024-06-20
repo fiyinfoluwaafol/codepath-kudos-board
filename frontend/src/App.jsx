@@ -14,6 +14,8 @@ function App() {
   });
   const [searchQuery,setSearchQuery] = useState("");
   const [searchResults,setSearchResults] = useState([]);
+  const [filterCriteria,setFilterCriteria] = useState("All");
+  const [filteredResults,setFilteredResults] = useState([]);
 
   useEffect(() => {
     getBoards();
@@ -32,6 +34,7 @@ function App() {
     catch(error) {
       console.error(error);
     }
+    setFilteredResults(boards);
   };
 
   async function addBoard(boardData) {
@@ -87,7 +90,6 @@ function App() {
 
   function handleCloseModal () {
     setIsModalVisible(false);
-    console.log(boardData);
   }
 
   const handleBoardDataChange = (data) => {
@@ -107,6 +109,19 @@ function App() {
     setSearchQuery(searchInput);
     setSearchResults(boards.filter(board => board.title.toLowerCase().includes(searchInput.toLowerCase())));
   }
+
+  const handleFilterClicked = (selectedFilter) => {
+    setFilterCriteria(selectedFilter);
+  }
+
+  function getFilteredBoards(boards, criteria) {
+    if (criteria == "All") {
+      return boards;
+    }
+    const filtered = boards.filter(board => board.category == criteria);
+    return filtered.length > 0 ? filtered : [];
+  }
+
   return (
     <>
       <header id='app-header'>
@@ -119,10 +134,11 @@ function App() {
         <SearchForm
           searchQuery={searchQuery}
           handleSearchQuery={handleSearchQuery}
+          handleFilterClicked={handleFilterClicked}
         />
         <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
         <BoardList
-          boards={searchQuery ? searchResults : boards}
+          boards={searchQuery ? getFilteredBoards(searchResults, filterCriteria) : getFilteredBoards(boards, filterCriteria)}
           onBoardDelete={handleDeleteBoard}
         />
       </main>
