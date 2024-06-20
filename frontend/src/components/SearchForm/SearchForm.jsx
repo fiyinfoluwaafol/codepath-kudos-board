@@ -1,22 +1,26 @@
 import "./SearchForm.css"
 
-function SearchForm ({searchQuery, handleSearchQuery}) {
+function SearchForm ({searchQuery, handleSearchQuery,handleFilterClicked}) {
     const handleInputChange = (event) => {
-        const inputValue = event.target.value;
-        handleSearchQuery(inputValue);
-        // console.log(searchQuery);
+        handleSearchQuery(event.target.value);
     }
+
+    const buttonClicked = (event) => {
+        console.log("filter selected:", event.target.name)
+        handleFilterClicked(event.target.name);
+    }
+
     return (
         <div className="search-form">
             <form>
                 <input className="search-bar" type="text" placeholder="Search boards..." value={searchQuery} onChange={handleInputChange}/>
             </form>
             <div className="category-filters">
-                <button>All</button>
-                <button>Recent</button>
-                <button>Celebration</button>
-                <button>Thank You</button>
-                <button>Inspiration</button>
+                <button name="All" onClick={buttonClicked}>All</button>
+                <button name="Recent" onClick={buttonClicked}>Recent</button>
+                <button name="Celebration" onClick={buttonClicked}>Celebration</button>
+                <button name="Thank You" onClick={buttonClicked}>Thank You</button>
+                <button name="Inspiration" onClick={buttonClicked}>Inspiration</button>
             </div>
         </div>
     )
