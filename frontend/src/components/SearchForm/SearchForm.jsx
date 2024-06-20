@@ -1,10 +1,15 @@
 import "./SearchForm.css"
 
-function SearchForm () {
+function SearchForm ({searchQuery, handleSearchQuery}) {
+    const handleInputChange = (event) => {
+        const inputValue = event.target.value;
+        handleSearchQuery(inputValue);
+        // console.log(searchQuery);
+    }
     return (
         <div className="search-form">
             <form>
-                <input className="search-bar" type="text" placeholder="Search boards..." />
+                <input className="search-bar" type="text" placeholder="Search boards..." value={searchQuery} onChange={handleInputChange}/>
             </form>
             <div className="category-filters">
                 <button>All</button>

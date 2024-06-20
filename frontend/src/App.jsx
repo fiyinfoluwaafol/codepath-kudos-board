@@ -7,12 +7,13 @@ import NewBoardForm from './components/NewBoardForm/NewBoardForm'
 function App() {
   const [boards, setBoards] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const [boardData, setBoardData] = useState({
     title: '',
     category: '',
     author: null
   });
+  const [searchQuery,setSearchQuery] = useState("");
+  const [searchResults,setSearchResults] = useState([]);
 
   useEffect(() => {
     getBoards();
@@ -102,6 +103,10 @@ function App() {
     deleteBoard(boardId);
   }
 
+  const handleSearchQuery = (searchInput) => {
+    setSearchQuery(searchInput);
+    setSearchResults(boards.filter(board => board.title.toLowerCase().includes(searchInput.toLowerCase())));
+  }
   return (
     <>
       <header id='app-header'>
@@ -111,10 +116,13 @@ function App() {
         <h1>KUDOBOARD</h1>
       </header>
       <main>
-        <SearchForm />
+        <SearchForm
+          searchQuery={searchQuery}
+          handleSearchQuery={handleSearchQuery}
+        />
         <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
         <BoardList
-          boards={boards}
+          boards={searchQuery ? searchResults : boards}
           onBoardDelete={handleDeleteBoard}
         />
       </main>

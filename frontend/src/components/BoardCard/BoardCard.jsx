@@ -1,6 +1,6 @@
 import "./BoardCard.css"
 
-function BoardCard ({key, title, category, onBoardDelete}) {
+function BoardCard ({title, category, onBoardDelete}) {
     return (
        <div className="board-card">
             <img src='https://placehold.co/250x400' alt='' className="board-cover"/>

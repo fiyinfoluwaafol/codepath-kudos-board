@@ -1,7 +1,7 @@
 import "./NewBoardForm.css"
 import { useState } from "react";
 
-function NewBoardForm ({isOpen, closeModal, onBoardDataChange, boardData,submitForm}) {
+function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
     const handleInputChange = (event) => {
         const {name, value} = event.target;
         onBoardDataChange( {[name]: value} );
