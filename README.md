@@ -12,9 +12,9 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
   - [x] Displays header, banner, search, board grid, and footer.
   - [x] Displays preview of all boards on initial page load.
     - [?] Boards previews should show an image/gif and board title.
-  - [ ] Users can click on a category (recent, celebration, thank you, inspiration) to filter the boards.
+  - [x] Users can click on a category (recent, celebration, thank you, inspiration) to filter the boards.
     - [ ] Recent displays most recently created boards.
-    - [ ] Other categories display boards of that type.
+    - [x] Other categories display boards of that type.
   - [x] Users can search for a board by name.
   - [ ] Users can click on a board to navigate to a new page containing that board.
   - [x] Users can create a new board.
