@@ -1,0 +1,35 @@
+.modal-overlay {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Causes blacked out overlay effect */
+    /* backdrop-filter: blur(5px); Blurs the background behind overlay */
+    overflow: auto;
+}
+
+.modal-content {
+    backdrop-filter: blur(5px);
+    background-color: white;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    overflow: auto;
+}
+
+.close-bttn {
+    background: none;
+    background-color: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
