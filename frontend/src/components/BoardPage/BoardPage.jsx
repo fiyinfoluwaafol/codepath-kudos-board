@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 function BoardPage() {
     const [selectedBoard,setSelectedBoard] = useState({});
-    const [isModalVisible, setIsModalVisible] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const { boardId } = useParams();
 
@@ -33,12 +33,17 @@ function BoardPage() {
         console.log('modal opened');
       }
 
+      function handleCloseModal () {
+        setIsModalVisible(false);
+      }
+
     return (
         <>
             <h1>{selectedBoard.title}</h1>
             <button onClick={handleOpenModal}>Create a Card</button>
             <CardList cards={selectedBoard.cards}/>
-            {isModalVisible && <NewCardForm />}
+            {isModalVisible && <NewCardForm
+                closeModal={handleCloseModal} />}
         </>
     );}
 

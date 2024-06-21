@@ -1,7 +1,7 @@
 import "./NewCardForm.css"
 import { useState } from "react";
 
-function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
+function NewCardForm ({closeModal, onCardDataChange, boardData, submitForm}) {
     const handleInputChange = (event) => {
         const {name, value} = event.target;
         onBoardDataChange( {[name]: value} );
@@ -12,7 +12,7 @@ function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
                 <button className="close-bttn" onClick={closeModal}>&times;</button>
                 <h2>Create a New Card</h2>
                 <p>Title:</p>
-                <input name='title' type='text' placeholder="Enter card description"/>
+                <input name='title' type='text' placeholder="Enter card title"/>
                 {/* <input name='title' type='text' placeholder="Enter card description" value={boardData.title} onChange={handleInputChange}/> */}
                 <p>Description:</p>
                 <input name='description' type="text" placeholder="Enter card description"/>
@@ -27,4 +27,4 @@ function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
     );
 }
 
-export default NewBoardForm;
+export default NewCardForm;
