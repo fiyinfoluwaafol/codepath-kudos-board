@@ -18,9 +18,9 @@ app.get('/boards', async (req, res) => {
 // GET requests for /boards/:id -> Specific board
 app.get('/boards/:id', async (req, res) => {
     const {id} = req.params
-    console.log(id);
     const board = await prisma.board.findUnique({
-        where: { id: parseInt(id) }
+        where: { id: parseInt(id) },
+        include: {cards: true,}
     });
     res.status(200).json(board)
 });
