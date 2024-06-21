@@ -6,6 +6,7 @@ function BoardList({boards,onBoardDelete}) {
     return (
       <BoardCard
         key={board.id}
+        id={board.id}
         title={board.title}
         category={board.category}
         onBoardDelete={() => onBoardDelete(board.id)}
