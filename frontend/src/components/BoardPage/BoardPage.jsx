@@ -1,10 +1,13 @@
 import './BoardPage.css';
 import { useParams } from 'react-router-dom';
 import CardList from '../CardList/CardList';
+import NewCardForm from '../NewCardForm/NewCardForm';
 import { useState, useEffect } from 'react';
 
 function BoardPage() {
     const [selectedBoard,setSelectedBoard] = useState({});
+    const [isModalVisible, setIsModalVisible] = useState(true);
+
     const { boardId } = useParams();
 
     async function getSpecificBoard(boardId) {
@@ -24,11 +27,18 @@ function BoardPage() {
     useEffect(() => {
       getSpecificBoard(boardId);
     }, []);
+
+    function handleOpenModal (){
+        setIsModalVisible(true);
+        console.log('modal opened');
+      }
+
     return (
         <>
             <h1>{selectedBoard.title}</h1>
-            <button>Create a Card</button>
+            <button onClick={handleOpenModal}>Create a Card</button>
             <CardList cards={selectedBoard.cards}/>
+            {isModalVisible && <NewCardForm />}
         </>
     );}
 

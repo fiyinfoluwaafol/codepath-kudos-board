@@ -62,6 +62,8 @@ app.delete('/boards/:id', async (req, res) => {
 });
 
 //LOOK INTO delete on cascade
+//TODO: Include PATCH requests for updating upvotes per card
+//TODO: Include DELETE requests for deleting cards
 
 const PORT = 3000
 app.listen(PORT, () => {
