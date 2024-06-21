@@ -1,8 +1,10 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import SearchForm from './components/SearchForm/SearchForm'
 import BoardList from './components/BoardList/BoardList'
 import NewBoardForm from './components/NewBoardForm/NewBoardForm'
+import BoardPage from './components/BoardPage/BoardPage'
 
 function App() {
   const [boards, setBoards] = useState([]);
@@ -16,6 +18,8 @@ function App() {
   const [searchResults,setSearchResults] = useState([]);
   const [filterCriteria,setFilterCriteria] = useState("All");
   const [filteredResults,setFilteredResults] = useState([]);
+  const [boardPageTitle,setboardPageTitle] = useState("");
+  const [selectedBoard,setSelectedBoard] = useState(null);
 
   useEffect(() => {
     getBoards();
@@ -122,36 +126,52 @@ function App() {
     return filtered.length > 0 ? filtered : [];
   }
 
+  function getBoardPageTitle (pageTitle) {
+    setboardPageTitle(pageTitle);
+  }
+
+  function getSelectedBoard (board) {
+    setSelectedBoard(board);
+  }
+
   return (
-    <>
+    <Router>
       <header id='app-header'>
         <div className='header-logo'>
           <img src='https://placehold.co/100x100' alt=''/>
         </div>
         <h1>KUDOBOARD</h1>
       </header>
-      <main>
-        <SearchForm
-          searchQuery={searchQuery}
-          handleSearchQuery={handleSearchQuery}
-          handleFilterClicked={handleFilterClicked}
-        />
-        <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
-        <BoardList
-          boards={searchQuery ? getFilteredBoards(searchResults, filterCriteria) : getFilteredBoards(boards, filterCriteria)}
-          onBoardDelete={handleDeleteBoard}
-        />
-      </main>
-      <footer>
-        Fiyinfoluwa Afolayan 2024
-      </footer>
-      {isModalVisible && <NewBoardForm
-        isOpen={isModalVisible}
-        closeModal={handleCloseModal}
-        onBoardDataChange={handleBoardDataChange}
-        boardData={boardData}
-        submitForm={handleCreateBoard}/>}
-    </>
+      <Routes>
+        <Route path='/' element={
+          <>
+            <main>
+              <SearchForm
+                searchQuery={searchQuery}
+                handleSearchQuery={handleSearchQuery}
+                handleFilterClicked={handleFilterClicked}
+              />
+              <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
+              <BoardList
+                boards={searchQuery ? getFilteredBoards(searchResults, filterCriteria) : getFilteredBoards(boards, filterCriteria)}
+                onBoardDelete={handleDeleteBoard}
+                getBoardPageTitle={getBoardPageTitle}
+              />
+            </main>
+            <footer>
+              Fiyinfoluwa Afolayan 2024
+            </footer>
+            {isModalVisible && <NewBoardForm
+              isOpen={isModalVisible}
+              closeModal={handleCloseModal}
+              onBoardDataChange={handleBoardDataChange}
+              boardData={boardData}
+              submitForm={handleCreateBoard}/>}
+          </>
+        } />
+        <Route path='/board/:boardId' element={<BoardPage selectedBoardTitle={boardPageTitle} />}/>
+      </Routes>
+    </Router>
   )
 }
 
