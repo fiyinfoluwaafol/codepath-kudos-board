@@ -2,8 +2,7 @@ import './Card.css';
 
 import React from 'react';
 
-function Card({title, description, imgUrl, author, upvotes}) {
-  console.log("gifUrl: ",title);
+function Card({title, description, imgUrl, author, upvotes, id, handleDelete}) {
   return (
     <div className="card">
         <h3>{title}</h3>
@@ -11,7 +10,7 @@ function Card({title, description, imgUrl, author, upvotes}) {
         <img src={imgUrl} alt="Card" />
         <button>Upvote: {upvotes}</button>
         {author && (<p>Author: {author}</p>)}
-        <button>Delete</button>
+        <button onClick={() => handleDelete(id)}>Delete</button>
     </div>
   );}
 

@@ -1,0 +1,8 @@
+-- DropForeignKey
+ALTER TABLE "Card" DROP CONSTRAINT "Card_boardId_fkey";
+
+-- AlterTable
+ALTER TABLE "Board" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-- AddForeignKey
+ALTER TABLE "Card" ADD CONSTRAINT "Card_boardId_fkey" FOREIGN KEY ("boardId") REFERENCES "Board"("id") ON DELETE CASCADE ON UPDATE CASCADE;

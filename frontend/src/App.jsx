@@ -114,7 +114,7 @@ function App() {
     <Router>
       <header id='app-header'>
         <div className='header-logo'>
-          <img src='https://placehold.co/100x100' alt=''/>
+          <img src="./assets/kudoboard-logo.jpeg" alt=''/>
         </div>
         <h1>KUDOBOARD</h1>
       </header>
