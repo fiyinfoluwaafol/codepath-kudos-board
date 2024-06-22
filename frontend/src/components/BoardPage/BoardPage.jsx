@@ -44,7 +44,7 @@ function BoardPage() {
             body: JSON.stringify({
               title: cardData.title,
               description: cardData.description,
-              imgUrl: cardData.imgUrl,
+              imgUrl: cardData.gifUrl,
               author: cardData.author,
               boardId: cardData.boardId
               })
@@ -83,33 +83,24 @@ function BoardPage() {
         catch(error) {
           console.error(error);
         }
-      }
+      };
+
       const handleCreateCard = (newCardData) => {
-        console.log(newCardData);
         addCard(newCardData);
-        handleCloseModal();
+        setIsModalVisible(false)
       }
 
     useEffect(() => {
       getSpecificBoard(boardId);
     }, []);
 
-    function handleOpenModal (){
-        setIsModalVisible(true);
-        console.log('modal opened');
-      }
-
-    function handleCloseModal () {
-    setIsModalVisible(false);
-    }
-
     return (
         <>
             <h1>{selectedBoard.title}</h1>
-            <button onClick={handleOpenModal}>Create a Card</button>
+            <button onClick={() => setIsModalVisible(true)}>Create a Card</button>
             <CardList cards={selectedBoard.cards}/>
             {isModalVisible && <NewCardForm
-                closeModal={handleCloseModal}
+                closeModal={() => setIsModalVisible(false)}
                 submitForm={handleCreateCard}
                 boardId={boardId} />}
         </>
