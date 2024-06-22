@@ -16,7 +16,7 @@ function CardList ({cards}) {
         );
     }) : <p>No cards available.</p>; // You can customize this message or render nothing
     return (
-        <div>
+        <div className="card-list-container">
             {cardList}
         </div>
     );

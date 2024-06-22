@@ -88,34 +88,18 @@ function App() {
     }
   }
 
-  function handleOpenModal (){
-    setIsModalVisible(true);
-  }
-
-  function handleCloseModal () {
-    setIsModalVisible(false);
-  }
-
   const handleBoardDataChange = (data) => {
     setBoardData(prev => ({ ...prev, ...data }));
   };
 
   const handleCreateBoard = () => {
     addBoard(boardData);
-    handleCloseModal();
-  }
-
-  const handleDeleteBoard = (boardId) => {
-    deleteBoard(boardId);
+    setIsModalVisible(false);
   }
 
   const handleSearchQuery = (searchInput) => {
     setSearchQuery(searchInput);
     setSearchResults(boards.filter(board => board.title.toLowerCase().includes(searchInput.toLowerCase())));
-  }
-
-  const handleFilterClicked = (selectedFilter) => {
-    setFilterCriteria(selectedFilter);
   }
 
   function getFilteredBoards(boards, criteria) {
@@ -124,14 +108,6 @@ function App() {
     }
     const filtered = boards.filter(board => board.category == criteria);
     return filtered.length > 0 ? filtered : [];
-  }
-
-  function getBoardPageTitle (pageTitle) {
-    setboardPageTitle(pageTitle);
-  }
-
-  function getSelectedBoard (board) {
-    setSelectedBoard(board);
   }
 
   return (
@@ -149,28 +125,28 @@ function App() {
               <SearchForm
                 searchQuery={searchQuery}
                 handleSearchQuery={handleSearchQuery}
-                handleFilterClicked={handleFilterClicked}
+                handleFilterClicked={setFilterCriteria}
               />
-              <button className="board-list-button" onClick={handleOpenModal}>Create a New Board</button>
+              <button className="board-list-button" onClick={() => setIsModalVisible(true)}>Create a New Board</button>
               <BoardList
                 boards={searchQuery ? getFilteredBoards(searchResults, filterCriteria) : getFilteredBoards(boards, filterCriteria)}
-                onBoardDelete={handleDeleteBoard}
-                getBoardPageTitle={getBoardPageTitle}
+                onBoardDelete={deleteBoard}
+                getBoardPageTitle={setboardPageTitle}
               />
             </main>
-            <footer>
-              Fiyinfoluwa Afolayan 2024
-            </footer>
             {isModalVisible && <NewBoardForm
               isOpen={isModalVisible}
-              closeModal={handleCloseModal}
+              closeModal={() => setIsModalVisible(false)}
               onBoardDataChange={handleBoardDataChange}
               boardData={boardData}
               submitForm={handleCreateBoard}/>}
           </>
         } />
-        <Route path='/board/:boardId' element={<BoardPage selectedBoardTitle={boardPageTitle} />}/>
+        <Route path='/board/:boardId' element={<BoardPage />}/>
       </Routes>
+              <footer>
+                Fiyinfoluwa Afolayan 2024
+              </footer>
     </Router>
   )
 }

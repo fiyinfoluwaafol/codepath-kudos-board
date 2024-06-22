@@ -3,10 +3,11 @@
   padding: 0;
 } */
 
-#app-header > h1 {
+/* #app-header > h1 { */
   /* margin-right: 50%;
   margin-left: 50%; */
-  text-align: center;
+  /* text-align: center;
+  letter-spacing: 0.2rem;
 }
 
 .header-logo {
@@ -20,6 +21,63 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+} */
+
+/* board-list-button */
+/* PREVIOUS CSS STYLE IS ABOVE */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+/* Header Styles */
+#app-header {
+  background-color: #0057b7;
+  color: #fff;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-logo img {
+  width: 100px;
+  height: auto;
+}
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+/* Main Content Styles */
+main {
+  padding: 20px 40px;
+}
+.board-list-button {
+  background-color: #008000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.board-list-button:hover {
+  background-color: #006400;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #333;
+  color: #fff;
 }
 
 /* #root {

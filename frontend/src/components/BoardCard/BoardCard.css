@@ -1,4 +1,4 @@
-.board-card {
+/* .board-card {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
@@ -7,4 +7,67 @@
 .board-cover {
     width: 200px;
     height: 300px;
+} */
+.board-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.board-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.board-cover {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.board-card h2 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.board-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card-bttn {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.card-bttn button {
+    background-color: #0057b7;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.card-bttn button:hover {
+    background-color: #00408d;
+}
+
+.card-bttn button:nth-child(2) {
+    background-color: #d9534f;
+}
+
+.card-bttn button:nth-child(2):hover {
+    background-color: #c9302c;
 }

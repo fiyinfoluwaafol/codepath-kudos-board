@@ -9,6 +9,7 @@ function Card({title, description, imgUrl, author, upvotes}) {
         <p>{description}</p>
         <img src="https://placehold.co/100x100" alt="Card" />
         <button>Upvote: {upvotes}</button>
+        {author && (<p>Author: {author}</p>)}
         <button>Delete</button>
     </div>
   );}

@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+button {
+    display: block;
+    background-color: #0057b7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 20px auto; /* Center button horizontally */
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #00408d;
+}
