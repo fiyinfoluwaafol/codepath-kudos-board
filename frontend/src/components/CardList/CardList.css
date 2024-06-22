@@ -1,0 +1,20 @@
+/* CardList Styles */
+.card-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 1200px; /* Adjust based on your layout needs */
+}
+
+.card-list-container p {
+    width: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}

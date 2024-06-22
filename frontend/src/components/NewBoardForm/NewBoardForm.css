@@ -1,35 +1,70 @@
 .modal-overlay {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4); /* Causes blacked out overlay effect */
-    /* backdrop-filter: blur(5px); Blurs the background behind overlay */
+    background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
     overflow: auto;
 }
 
 .modal-content {
-    backdrop-filter: blur(5px);
+    position: relative;
     background-color: white;
-    margin: 20% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    overflow: auto;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px; /* Ensures the modal is not too wide on larger screens */
+    overflow: hidden;
+    align-items: center;
 }
 
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.modal-content p {
+    margin-top: 20px;
+    color: #666;
+}
+
+.modal-content input,
+.modal-content select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .close-bttn {
-    background: none;
-    background-color: none;
-    border: none;
     color: #333;
     cursor: pointer;
-    font-size: 20px;
-    padding: 0;
+    font-size: 24px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 15px;
+    top: 15px;
+    border: none;
+    background: none;
+}
+
+.modal-content button {
+    background-color: #0057b7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 25%;
+}
+
+.modal-content button:hover {
+    background-color: #00408d;
 }

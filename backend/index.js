@@ -63,19 +63,19 @@ app.delete('/boards/:id', async (req, res) => {
 
 app.post('/boards/:id/cards', async (req, res) => {
     const {id} = req.params;
-    const {title, description, author, imgUrl} = req.body;
+    const {title, description, author, imgUrl, boardId} = req.body;
     const newCard = await prisma.card.create({
         data: {
             title,
             description,
-            author,
             imgUrl,
+            author,
             board: {
                 connect: {
                     id: parseInt(id)
                 }}}});
     res.status(201).json(newCard);
-})
+});
 //LOOK INTO delete on cascade
 //TODO: Include PATCH requests for updating upvotes per card
 //TODO: Include DELETE requests for deleting cards

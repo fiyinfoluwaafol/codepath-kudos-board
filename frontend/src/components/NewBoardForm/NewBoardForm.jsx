@@ -9,7 +9,7 @@ function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button className="close-bttn" onClick={closeModal}>&times;</button>
+                <button id="close-bttn" onClick={closeModal}>&times;</button>
                 <h2>Create a New Board</h2>
                 <p>Title:</p>
                 <input name='title' type='text' value={boardData.title} onChange={handleInputChange}/>
@@ -23,7 +23,7 @@ function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
                 </select>
                 <p>Author:</p>
                 <input name='author' type="text" value={boardData.author} onChange={handleInputChange}/>
-                <button onClick={submitForm}>Create Board</button>
+                <button onClick={submitForm} id="create-bttn" >Create Board</button>
             </div>
         </div>
     );
