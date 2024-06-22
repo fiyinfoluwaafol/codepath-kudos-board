@@ -1,8 +1,7 @@
 import "./CardList.css"
 import Card from "../Card/Card"
 
-function CardList ({cards}) {
-    console.log("list of cards: ",cards);
+function CardList ({cards, handleDelete, handleIncrementUpvote}) {
     // Check if cards is available and is an array before mapping
     const cardList = cards && Array.isArray(cards) ? cards.map((card) => {
         return (
@@ -12,6 +11,9 @@ function CardList ({cards}) {
                 description={card.description}
                 imgUrl={card.imgUrl}
                 upvotes={card.upvotes}
+                id={card.id}
+                handleDelete={handleDelete}
+                handleIncrementUpvote={handleIncrementUpvote}
             />
         );
     }) : <p>No cards available.</p>; // You can customize this message or render nothing

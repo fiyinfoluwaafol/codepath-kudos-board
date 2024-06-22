@@ -62,7 +62,7 @@ function BoardPage() {
         }
       };
 
-      async function deleteCard(boardId) {
+      async function deleteCard(cardId) {
         try{
           const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
           const options = {
@@ -71,7 +71,7 @@ function BoardPage() {
               'Accept': 'application/json',
               'Content-Type': 'application/json'},
             };
-          const response = await fetch(`${backendUrlAccess}/boards/${boardId}/cards/`,options);
+          const response = await fetch(`${backendUrlAccess}/cards/${cardId}`,options);
           if (!response.ok) {
             throw new Error('Something went wrong!');
           }
@@ -85,10 +85,34 @@ function BoardPage() {
         }
       };
 
+      async function incrementUpvote(cardId) {
+        try {
+            const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+            const response = await fetch(`${backendUrlAccess}/cards/${cardId}/upvote`, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to increment upvote');
+            }
+
+            const updatedCard = await response.json();
+            console.log('Upvote incremented:', updatedCard);
+            setCardData(updatedCard);
+            getSpecificBoard(cardData.boardId);
+        } catch (error) {
+            console.error('Error incrementing upvote:', error);
+        }
+    }
+
       const handleCreateCard = (newCardData) => {
         addCard(newCardData);
         setIsModalVisible(false)
-      }
+      };
 
     useEffect(() => {
       getSpecificBoard(boardId);
@@ -98,7 +122,7 @@ function BoardPage() {
         <>
             <h1>{selectedBoard.title}</h1>
             <button onClick={() => setIsModalVisible(true)}>Create a Card</button>
-            <CardList cards={selectedBoard.cards}/>
+            <CardList cards={selectedBoard.cards} handleDelete={deleteCard} handleIncrementUpvote={incrementUpvote}/>
             {isModalVisible && <NewCardForm
                 closeModal={() => setIsModalVisible(false)}
                 submitForm={handleCreateCard}

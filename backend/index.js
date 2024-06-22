@@ -84,9 +84,51 @@ app.post('/boards/:id/cards', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-//LOOK INTO delete on cascade
-//TODO: Include PATCH requests for updating upvotes per card
-//TODO: Include DELETE requests for deleting cards
+
+app.delete('/cards/:cardId', async (req, res) => {
+    const { cardId } = req.params; // Get the card ID from the URL parameters
+    try {
+        const card = await prisma.card.delete({
+            where: {
+                id: parseInt(cardId), // Ensure the ID is an integer
+            }
+        });
+        res.status(200).json({ message: 'Card deleted successfully', card });
+    } catch (error) {
+        console.error(error);
+        if (error.code === 'P2025') {
+            res.status(404).json({ message: 'Card not found' });
+        } else {
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
+});
+
+app.patch('/cards/:cardId/upvote', async (req, res) => {
+    const { cardId } = req.params; // Get the card ID from the URL parameters
+    try {
+        const updatedCard = await prisma.card.update({
+            where: {
+                id: parseInt(cardId), // Ensure the ID is an integer
+            },
+            data: {
+                upvotes: {
+                    increment: 1 // Increment the upvote count by 1
+                }
+            }
+        });
+        res.status(200).json(updatedCard);
+    } catch (error) {
+        console.error(error);
+        if (error.code === 'P2025') {
+            res.status(404).json({ message: 'Card not found' });
+        } else {
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
+});
+
+
 
 const PORT = 3000
 app.listen(PORT, () => {
