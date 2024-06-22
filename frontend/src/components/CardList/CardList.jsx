@@ -2,7 +2,7 @@ import "./CardList.css"
 import Card from "../Card/Card"
 
 function CardList ({cards}) {
-    console.log(cards);
+    console.log("list of cards: ",cards);
     // Check if cards is available and is an array before mapping
     const cardList = cards && Array.isArray(cards) ? cards.map((card) => {
         return (

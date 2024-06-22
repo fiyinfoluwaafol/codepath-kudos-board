@@ -62,19 +62,27 @@ app.delete('/boards/:id', async (req, res) => {
 });
 
 app.post('/boards/:id/cards', async (req, res) => {
-    const {id} = req.params;
-    const {title, description, author, imgUrl, boardId} = req.body;
-    const newCard = await prisma.card.create({
-        data: {
-            title,
-            description,
-            imgUrl,
-            author,
-            board: {
-                connect: {
-                    id: parseInt(id)
-                }}}});
-    res.status(201).json(newCard);
+    const { id } = req.params;
+    const { title, description, author, imgUrl } = req.body;
+    try {
+        const newCard = await prisma.card.create({
+            data: {
+                title,
+                description,
+                imgUrl,
+                author,
+                board: {
+                    connect: {
+                        id: parseInt(id)
+                    }
+                }
+            }
+        });
+        res.status(201).json(newCard);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 //LOOK INTO delete on cascade
 //TODO: Include PATCH requests for updating upvotes per card

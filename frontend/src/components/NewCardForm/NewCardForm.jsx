@@ -8,22 +8,6 @@ function NewCardForm ({closeModal, boardId, submitForm}) {
     const [gifUrl, setGifUrl] = useState('');
     const [author, setAuthor] = useState('');
 
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    };
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-    };
-    const handleGifSearchChange = (event) => {
-        setGifSearch(event.target.value);
-    };
-    const handleGifUrlChange = (event) => {
-        setGifUrl(event.target.value);
-    };
-    const handleAuthorChange = (event) => {
-        setAuthor(event.target.value);
-    };
-
     const handleSubmit = () => {
         const cardData = {
             title,
@@ -62,12 +46,12 @@ function NewCardForm ({closeModal, boardId, submitForm}) {
             <div className="modal-content">
                 <button className="close-bttn" onClick={closeModal}>&times;</button>
                 <h2>Create a New Card</h2>
-                <input name='title' type='text' placeholder="Enter card title" value={title} onChange={handleTitleChange}/>
-                <input name='description' type="text" placeholder="Enter card description" value={description} onChange={handleDescriptionChange}/>
-                <input name="gifSearch" type="text" placeholder="Search GIFs..." value={gifSearch} onChange={handleGifSearchChange}/>
+                <input name='title' type='text' placeholder="Enter card title" value={title} onChange={(event) => setTitle(event.target.value)}/>
+                <input name='description' type="text" placeholder="Enter card description" value={description} onChange={(event) => setDescription(event.target.value)}/>
+                <input name="gifSearch" type="text" placeholder="Search GIFs..." value={gifSearch} onChange={(event) => setGifSearch(event.target.value)}/>
                 <button onClick={() => fetchGIFUrls()}>Search</button>
-                <input name="gifUrl" type="text" placeholder="Enter GIF Url" value={gifUrl} onChange={handleGifUrlChange}/>
-                <input name='author' type="text" placeholder="Enter owner (optional)" value={author} onChange={handleAuthorChange}/>
+                <input name="gifUrl" type="text" placeholder="Enter GIF Url" value={gifUrl} onChange={(event) => setGifUrl(event.target.value)}/>
+                <input name='author' type="text" placeholder="Enter owner (optional)" value={author} onChange={(event) => setAuthor(event.target.value)}/>
                 <button onClick={handleSubmit}>Create Card</button>
             </div>
         </div>

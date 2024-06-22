@@ -8,7 +8,7 @@ function BoardCard ({id, title, category, onBoardDelete}) {
     }
     return (
        <div className="board-card">
-            <img src='https://placehold.co/250x400' alt='' className="board-cover"/>
+            <img src={`https://picsum.photos/200/300?random=${Math.random()}`} alt='' className="board-cover"/> {/*Generates a random image*/}
             <h2>{title}</h2>
             <p>{category}</p>
             <div className='card-bttn'>
