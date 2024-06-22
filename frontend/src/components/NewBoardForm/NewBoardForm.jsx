@@ -1,5 +1,4 @@
 import "./NewBoardForm.css"
-import { useState } from "react";
 
 function NewBoardForm ({closeModal, onBoardDataChange, boardData, submitForm}) {
     const handleInputChange = (event) => {

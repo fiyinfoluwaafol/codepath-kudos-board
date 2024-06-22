@@ -16,7 +16,7 @@ function CardList ({cards, handleDelete, handleIncrementUpvote}) {
                 handleIncrementUpvote={handleIncrementUpvote}
             />
         );
-    }) : <p>No cards available.</p>; // You can customize this message or render nothing
+    }) : <p>No cards available.</p>;
     return (
         <div className="card-list-container">
             {cardList}

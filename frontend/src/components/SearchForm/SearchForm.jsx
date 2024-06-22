@@ -2,7 +2,6 @@ import "./SearchForm.css"
 
 function SearchForm ({searchQuery, handleSearchQuery,handleFilterClicked}) {
     const buttonClicked = (event) => {
-        console.log("filter selected:", event.target.name)
         handleFilterClicked(event.target.name);
     }
 
