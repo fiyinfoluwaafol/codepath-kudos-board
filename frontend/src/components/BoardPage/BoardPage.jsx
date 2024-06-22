@@ -101,7 +101,6 @@ function BoardPage() {
             }
 
             const updatedCard = await response.json();
-            console.log('Upvote incremented:', updatedCard);
             setCardData(updatedCard);
             getSpecificBoard(cardData.boardId);
         } catch (error) {
