@@ -9,6 +9,8 @@
     "prisma": "^5.15.1"
   },
   "scripts": {
-    "devserver": "./node_modules/nodemon/bin/nodemon.js index.js"
+    "build": "prisma migrate deploy && prisma generate",
+    "devserver": "./node_modules/nodemon/bin/nodemon.js index.js",
+    "start": "node index.js"
   }
 }
