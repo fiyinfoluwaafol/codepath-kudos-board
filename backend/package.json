@@ -9,7 +9,7 @@
     "prisma": "^5.15.1"
   },
   "scripts": {
-    "build": "prisma migrate deploy && prisma generate",
+    "build": "npx prisma migrate resolve --applied 20240618200321_init_board_table && npx prisma migrate resolve --applied 20240620211857_init_card_table && npx prisma migrate resolve --applied 20240622060121_fixed_delete && prisma migrate deploy",
     "devserver": "./node_modules/nodemon/bin/nodemon.js index.js",
     "start": "node index.js"
   }
