@@ -2,7 +2,7 @@
 
 Submitted by: **Fiyinfoluwa Afolayan**
 
-Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Kudos Board Deployed Site](https://codepath-kudos-board-1.onrender.com)
 
 ### Application Features
 
@@ -32,8 +32,8 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
 #### STRETCH FEATURES
 
-- [ ] **Deployment**
-  - [ ] Website is deployed via Render.
+- [x] **Deployment**
+  - [x] Website is deployed via Render.
 - [ ] **Comments**
   - [ ] Users should be able to comment on cards.
 
@@ -41,13 +41,13 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 ### Walkthrough Video
 
 <div>
-  <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
-    <p>Board Creation Walkthrough - Watch Video</p>
-  </a>
-  <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
-    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c8af9469359344a794d7223fb48cca4e-with-play.gif">
-  </a>
-</div>
+    <a href="https://www.loom.com/share/be048dab2a184baeac7eeee867199de1">
+      <p>KudosBoard Project Demo - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/be048dab2a184baeac7eeee867199de1">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/be048dab2a184baeac7eeee867199de1-with-play.gif">
+    </a>
+  </div>
 
 ### Reflection
 

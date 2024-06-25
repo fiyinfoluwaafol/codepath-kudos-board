@@ -33,7 +33,6 @@ function NewCardForm ({closeModal, boardId, submitForm}) {
           throw new Error('Failed to fetch data from API');
         }
         const data = await response.json();
-        console.log(data);
         setGifUrl(data.data[0].images.original.url);
       }
       catch (error) {
