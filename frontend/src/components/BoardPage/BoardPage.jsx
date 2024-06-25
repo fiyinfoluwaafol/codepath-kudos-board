@@ -33,7 +33,7 @@ function BoardPage() {
         }
     };
 
-    async function addCard(cardData) {
+    async function addCard(cardInfo) {
         try{
           const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
           const options = {
@@ -42,14 +42,14 @@ function BoardPage() {
               'Accept': 'application/json',
               'Content-Type': 'application/json'},
             body: JSON.stringify({
-              title: cardData.title,
-              description: cardData.description,
-              imgUrl: cardData.gifUrl,
-              author: cardData.author,
-              boardId: cardData.boardId
+              title: cardInfo.title,
+              description: cardInfo.description,
+              imgUrl: cardInfo.gifUrl,
+              author: cardInfo.author,
+              boardId: cardInfo.boardId
               })
             };
-          const response = await fetch(`${backendUrlAccess}/boards/${cardData.boardId}/cards`,options);
+          const response = await fetch(`${backendUrlAccess}/boards/${cardInfo.boardId}/cards`,options);
           if (!response.ok) {
             throw new Error('Something went wrong!');
           }
@@ -102,7 +102,7 @@ function BoardPage() {
 
             const updatedCard = await response.json();
             setCardData(updatedCard);
-            getSpecificBoard(cardData.boardId);
+            // getSpecificBoard(cardData.boardId);
         } catch (error) {
             console.error('Error incrementing upvote:', error);
         }
@@ -115,7 +115,7 @@ function BoardPage() {
 
     useEffect(() => {
       getSpecificBoard(boardId);
-    }, []);
+    }, [cardData]);
 
     return (
         <>

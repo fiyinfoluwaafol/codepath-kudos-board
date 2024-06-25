@@ -41,13 +41,13 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 ### Walkthrough Video
 
 <div>
-    <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
-      <p>KudosBoad Walkthrough - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c8af9469359344a794d7223fb48cca4e-with-play.gif">
-    </a>
-  </div>
+  <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
+    <p>Board Creation Walkthrough - Watch Video</p>
+  </a>
+  <a href="https://www.loom.com/share/c8af9469359344a794d7223fb48cca4e">
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c8af9469359344a794d7223fb48cca4e-with-play.gif">
+  </a>
+</div>
 
 ### Reflection
 
